@@ -8,4 +8,7 @@ Objetivos
    * Micuentra de Githunb es **mgatgle**
 * Crear el primer repositorio para el curso
    * _Repositorio Ep_Met_Exp_AD2023_
-*
+* sincronizar el reporsitorio 
+* sincronizar
+*instalar 
+
