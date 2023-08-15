@@ -10,5 +10,6 @@ Objetivos
    * _Repositorio Ep_Met_Exp_AD2023_
 * sincronizar el reporsitorio 
 * sincronizar
-*instalar 
+*instalar wikter
+*instalar libreria para R
 
