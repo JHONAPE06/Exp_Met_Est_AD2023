@@ -12,4 +12,4 @@ Objetivos
 * sincronizar
 *instalar wikter
 *instalar libreria para R
-
+-
