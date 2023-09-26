@@ -134,3 +134,70 @@ plot(copa$Cnpy, copa$GLI)
 
 cor.test(copa$Cnpy , copa$LAI4)
 cor.test(copa$Cnpy, copa$GLI)
+
+
+# regresion lineal --------------------------------------------------------
+
+x2 <- c(10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5)
+y2 <- c(9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74)
+DB2 <- data.frame(x2, y2)
+mean(DB2$x2):  var(DB2$x2)
+mean(DB2$y2): var(DB2$y2)
+cor.test(DB2$x2, DB2$y2)
+plot(DB2$x2, DB2$y2,
+     col ="red",
+     pch =19,
+     xlab = "valor de x",
+     ylab = "valor de y")
+text(6, 8, "Base de datos 1")
+
+x4 <- c(8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8)
+y4 <- c(6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.8)
+DB4 <- data.frame(x4, y4)
+mean(DB4$x4): var(DB4$x4)
+mean(DB4$y4): var(DB4$y4)
+cor.test(DB4$x4, DB4$y4)
+plot(DB4$x4, DB4$y4,
+     col = "red",
+     pch =  19,
+     xlab = "valor de x",
+     ylab = "valor de y")
+text(6, 10, "Base de datos 1")
+
+DB2.lm <- lm(DB2$y2 ~ DB2$x2)
+DB2.lm
+summary(DB2.lm)
+DB2.lm$fitted.values
+
+DB2$Ajustado <- round(DB2.lm$fitted.values,2)
+DB2$ForAjus <- 3.0 + 0.5*DB2$x2
+
+# Agregar la linea de tendencia central con la funcion abline -----------------------------------
+
+plot(DB2$x2, DB2$y2,
+     col ="red",
+     pch =19,
+     xlab = "valor de x",
+     ylab = "valor de y")
+text(6, 10, "Base de datos 1")
+abline(DB2.lm, col= "blue")
+DB2.lm$residuals
+sum(DB2.lm$residuals)
+
+
+# ANOVA
+# Datos de diametro en Chihuahua
+localidad <- read.csv("scripts/localidades.csv", header = T)
+boxplot(localidad$DAP ~ localidad$Paraje,
+        col = "Indianred")
+shapiro.test(localidad$DAP)
+bartlett.test(localidad$DAP ~ localidad$Paraje)
+
+loc.aov <- aov(localidad$DAP ~ localidad$Paraje)
+summary(loc.aov)
+9892/3
+10476/116
+3297/90
+TukeyHSD(loc.aov)
+plot(TukeyHSD(loc.aov))
+tapply(localidad$DAP, localidad$Paraje, mean)
